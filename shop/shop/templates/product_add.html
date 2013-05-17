@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Create Shoppinglist{% endblock %}
+{% block head %}Save Shopping List{% endblock %}
+{% block navbar %}{% include "navbar_products.html" %}{%endblock%}
+{% block content %}
+{% load dictionary_extras %}
+<div class="ui-body ui-body-b">
+<form method="post" action="">{% csrf_token %}
+ {{ form.non_field_errors }}
+ 
+ {{form.product.errors}}
+ <label for="product_name">Product Name*</label>
+ <div data-role="fieldcontain">
+ 
+						
+						
+												<input name="product_name" id="product_name" value="">
+	
+</div>
+
+<label for="cat0">Main Category</label>
+<div data-role="fieldcontain">
+
+						<select name="cat0" id="cat0"
+							data-native-menu="false">
+							<option value="0">No main category selected</option>
+{% for catiter in cat0 %}
+    <option value="{{ catiter }}">{{ catiter }}</option>
+{% endfor %}
+</select>
+</div>
+<label for="select-native-4">Product Category</label>
+<div data-role="fieldcontain">
+
+    <select name="select-native-4" id="select-native-4" class="subcategory ui-disabled">
+        <option value="0">Choose...</option>
+        {% for k in keylist %}
+        <optgroup label="{{ k }}">
+        {% for val in cat1cat2|access:k %}
+            <option value="{{ val }}">{{ val }}</option>
+          {% endfor %}  
+        </optgroup>
+        {% endfor %}
+       
+    </select>
+
+
+ 
+</div>
+<div data-role="fieldcontain">
+<input type="submit" value="Save" disabled/>
+</form>
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+
+
+$('#cat0').change(function() {
+  var cat0val = $('#cat0')[0].value;
+	if (cat0val != '0'){
+		$(".subcategory").removeClass('ui-disabled');
+		$('[type="submit"]').button('enable');	
+	}
+	else {
+		$(".subcategory").addClass('ui-disabled');
+		$('[type="submit"]').button('disable');	
+	}
+});
+
+	
+</script>
+{% endblock %}

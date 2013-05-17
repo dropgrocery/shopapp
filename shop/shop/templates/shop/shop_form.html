@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Create Shoppinglist{% endblock %}
+{% block head %}Save Shopping List{% endblock %}
+{% block navbar %}{% include "navbar_editshops.html" %}{%endblock%}
+{% block content %}
+<div class="ui-body ui-body-b">
+<form method="post" action="">{% csrf_token %}
+ {{ form.non_field_errors }}
+ 
+ 
+ 
+<label for="id_name">Shop:</label>
+{{form.name.errors}}
+ <div data-role="fieldcontain">
+	{{form.name}}
+</div>
+ 
+  <div data-role="fieldcontain">
+<input type="submit" value="Save"/>
+</div>
+</form>
+</div><!-- end ui-body-->
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

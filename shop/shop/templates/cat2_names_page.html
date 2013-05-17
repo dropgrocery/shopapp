@@ -1,0 +1,48 @@
+{% extends "base_enable_ajax.html" %}
+{% block title %}Create Shoppinglist{% endblock %}
+{% block head %}Save Shopping List{% endblock %}
+{% block content %}
+{% load dictionary_extras %}
+<div class="ui-body ui-body-b">
+<ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
+	{% for tax in taxonomies %}
+	
+    <li><a href="#popup{{tax.id}}" data-rel="popup" data-position-to="window" data-transition="popup">{{ tax.cat2_name}}
+     {% if tax.cat2_name in currentshoplist %}
+    	<span class="ui-li-count">{{currentshoplist|access:tax.cat2_name}}</span>
+    	{% endif %}
+    
+    </a></li>
+    <div data-role="popup" id="popupMenu" data-theme="a">
+    
+    <div data-role="popup" id="popup{{tax.id}}" data-theme="a" class="ui-corner-all">
+    <a href="./" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <form method="post" action="">{% csrf_token %}
+            <div style="padding:10px 20px;">
+              
+              <label for="amount" class="select">Amount</label>
+			<select name="amount" id="amount" data-mini="true">
+			<option value="0">0</option>
+    		<option selected="selected" value="1">1</option>
+    		<option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    		
+</select>
+			
+			<input type="hidden" name="product_name" value="{{tax.cat2_name}}">
+			<input type="hidden" name="taxonomy" value="{{tax.id}}">
+              <button type="submit" data-theme="b" data-icon="check">Add</button>
+            </div>
+        </form>
+    </div>
+	</div>
+    {% endfor %}
+</ul>
+</div>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% if shoppinglists %}
+{% if remove %}
+    		<form method="post" action="">{% csrf_token %}
+    		<fieldset data-role="controlgroup">
+    		<legend>Select Shopping list to remove:</legend>
+    {%else%}
+	<ul data-role="listview" {% if remove %} data-theme="d" {%endif%}>
+	{%endif%}
+	{% for shoppinglist in shoppinglists %}
+	
+    
+    
+    	{% if remove %}
+    		
+    
+        
+        <input name="shoppinglist{{shoppinglist.id}}" id="shoppinglist{{shoppinglist.id}}" type="checkbox">
+        <label for="shoppinglist{{shoppinglist.id}}">{{ shoppinglist.shoppingdate }} | {{shoppinglist.shop.name}}</label>
+        
+    
+    
+    	{% else %}
+        <li><a href="{{ shoppinglist.get_absolute_url}}">{{ shoppinglist.shoppingdate }} | {{shoppinglist.shop.name}}</a></li>
+        {% endif %}
+    
+    {% endfor %}
+   
+    {%if remove %}
+    <input type="submit" value="Remove List(s)" data-theme="b"/>
+    </fieldset>
+    </form>
+    {%else%}
+     </ul>
+    {%endif%}
+{% else %}
+<p>No Shoppinglists found.</p>
+{% endif %}

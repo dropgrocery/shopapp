@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Create Shopping List{% endblock %}
+{% block head %}Compose Shopping List{% endblock %}
+{% block navbar %}{% include "navbar_product_insert.html" %}{%endblock%}
+{% block content %}
+{% load dictionary_extras %}
+<div class="ui-body ui-body-b">
+<ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
+	{% for cat in categories %}
+    <li><a href="#">{{ cat }}</a></li>
+    {% endfor %}
+</ul>
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+
+
+$('#cat0').change(function() {
+  var cat0val = $('#cat0')[0].value;
+	if (cat0val != '0'){
+		$(".subcategory").removeClass('ui-disabled');
+		$('[type="submit"]').button('enable');	
+	}
+	else {
+		$(".subcategory").addClass('ui-disabled');
+		$('[type="submit"]').button('disable');	
+	}
+});
+
+	
+</script>
+{% endblock %}

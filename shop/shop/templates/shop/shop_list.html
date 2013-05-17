@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}DropGrocery | Shops{% endblock %}
+{% block head %}Configure Shops {% endblock %}
+{% block navbar %}{% include "navbar_shops.html" %}{%endblock%}
+{% block righthead %}<a href="/config" data-icon="gear" class="ui-btn-right">Settings</a> {%endblock%}
+{% block content %}
+
+{% if shops %}
+
+  
+    {% if remove %}
+    		<form method="post" action="">{% csrf_token %}
+    		<fieldset data-role="controlgroup">
+    		<legend>Shops to remove:</legend>
+    {%else%}
+	<ul data-role="listview" {% if remove %} data-theme="d" {%endif%}>
+	{%endif%}
+    
+        {% for shop in shops %}
+        
+        {% if remove %}
+    		
+    
+        
+        <input name="{{shop.id}}" id="shop{{shop.id}}" type="checkbox">
+        <label for="shop{{shop.id}}">{{ shop.name}}</label>
+        
+    
+    
+    	{% else %}
+        <li><a href="">{{ shop.name }} </a></li>
+        {% endif %}
+        {% endfor %}
+    
+    {%if remove %}
+    <input type="submit" value="Remove Shop(s)" data-theme="b"/>
+    </fieldset>
+    </form>
+    {%else%}
+     </ul>
+    {%endif%}
+{% else %}
+<p>No Shops found.</p>
+{% endif %}
+{% endblock %}

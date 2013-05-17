@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Create Shoppinglist{% endblock %}
+{% block head %}Save Shopping List{% endblock %}
+{% block content %}
+
+<ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
+	{% for cat0_name in cat0_names %}
+    <li><a href="{{cat0_name}}/">{{ cat0_name }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+{% block script %}
+<script>
+
+
+$('#cat0').change(function() {
+  var cat0val = $('#cat0')[0].value;
+	if (cat0val != '0'){
+		$(".subcategory").removeClass('ui-disabled');
+		$('[type="submit"]').button('enable');	
+	}
+	else {
+		$(".subcategory").addClass('ui-disabled');
+		$('[type="submit"]').button('disable');	
+	}
+});
+
+	
+</script>
+{% endblock %}

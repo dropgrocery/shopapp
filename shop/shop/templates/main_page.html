@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Welcome to DropGrocery{% endblock %}
+{% block head %}Welcome to DropGrocery {% endblock %}
+{% block navbar %}{% include "navbar_main.html" %}{%endblock%}
+{%block lefthead %}{%if user.username %}<a href="/logout/">Logout</a>
+
+{%else%} <div><a href="/login/" data-role="button" class="ui-btn-left">Login</a><a href="/register/" data-role="button" class="ui-btn-right">Register</a></div>
+
+{%endif%}{%endblock%}
+{% block righthead %}{%if user.username %}<a href="config" data-icon="gear" class="ui-btn-right">Configuration</a> {%endif%}{%endblock%}
+
+{% block content %}
+{% if user.username %}
+<p>Welcome {{ user.username }}!
+Here you can <a href="/save/">compose</a> your shoppinglist!</p>
+{% else %}
+<p>Welcome anonymous user!
+You need to <a href="/login/">login</a>
+before you can make use of the shoppinglist app.</p>
+{% endif %}
+
+
+{% endblock %}
+{% block footer %}
+{% include "footer_main.html" %}
+{% endblock%}

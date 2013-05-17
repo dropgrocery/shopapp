@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Create Shoppinglist{% endblock %}
+{% block head %}Save Shopping List{% endblock %}
+{% block navbar %}{% include "navbar_createshoppinglist.html" %}{%endblock%}
+{% block content %}
+<div class="ui-body ui-body-b">
+<form method="post" action="">{% csrf_token %}
+ {{ form.non_field_errors }}
+ 
+ 
+ {{form.shop.errors}}
+<label for="select-shop">Shop:</label>
+ <div data-role="fieldcontain">
+	<select name="shop" id="shop" >
+		<option value="0">No shop selected</option>
+{% for shopiter in shops %}
+    <option value="{{ shopiter.id }}">{{ shopiter.name }}</option>
+{% endfor %}
+</select>
+</div>
+ 
+ {{form.shoppingdate.errors}}
+ <label for="shoppingdate">Shopping Date*</label>
+ <div data-role="fieldcontain">
+	<input name="shoppingdate" id="shoppingdate"
+							shoppingdate="" type="text" data-role="datebox"
+							data-options='{"mode":"calbox", "overrideDateFormat":"%d/%m/%Y", "useFocus": true}'
+							value="">
+
+					
+</div>
+
+
+
+    
+<div data-role="fieldcontain">
+<input type="submit" value="Save" disabled/>
+</div>
+</form>
+</div><!-- end ui-body-->
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$('#shop').change(function() {
+  var shop = $('#shop')[0].value;
+	if (shop != '0'){
+		
+		$('[type="submit"]').button('enable');	
+	}
+	else {
+		
+		$('[type="submit"]').button('disable');	
+	}
+});
+
+	
+</script>
+{% endblock %}

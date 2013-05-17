@@ -1,0 +1,12 @@
+{% extends "base_enable_ajax.html" %}
+{% block title %}Shopping List Products {{% endblock %}
+{% block head %}Shopping List | {{shoppinglist.shoppingdate}} | {{shoppinglist.shop}} {% endblock%}
+{% block navbar %}
+{% include "navbar_shoplist_products.html" %}
+{% endblock %}
+{% block content %}
+
+{% include "list_products.html" %} 
+
+	
+{% endblock %}

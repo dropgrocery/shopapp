@@ -1,0 +1,16 @@
+{% extends "base_enable_ajax.html" %}
+{% block title %}DropGrocery Settings {{% endblock %}
+{% block head %}Settings{% endblock%}
+{% block navbar %}
+
+{% endblock %}
+{% block content %}
+<a href="config/shoppinglists.html" data-role="button">Config Shopping Lists</a>
+<a href="/shops" data-role="button">Config Shops</a>
+<a href="/user/{{user.username}}/customproducts/" data-role="button">Config My Products</a>
+<a href="config/product_categories.html" data-role="button">Config Product Categories</a>
+
+
+
+	
+{% endblock %}

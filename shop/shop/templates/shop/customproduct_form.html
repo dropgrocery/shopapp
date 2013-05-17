@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Create custom Product{% endblock %}
+{% block head %}New custom product{% endblock %}
+{% block navbar %}{% include "navbar_customproducts.html" %}{%endblock%}
+{% block content %}
+<div class="ui-body ui-body-b">
+<form method="post" action="">{% csrf_token %}
+ {{ form.non_field_errors }}
+ 
+ 
+ 
+<label for="product_name">Product Name:</label>
+{{form.product_name.errors}}
+ <div data-role="fieldcontain">
+	{{form.product_name}}
+</div>
+ 
+  <div data-role="fieldcontain">
+<input type="submit" value="Save"/>
+</div>
+</form>
+</div><!-- end ui-body-->
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

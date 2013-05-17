@@ -1,0 +1,16 @@
+
+		<div data-role="navbar">
+				<ul>
+				{% if user.is_authenticated %}
+					<li><a href="/">Home</a></li>
+					<li><a href="/shops/">LIST shops</a>
+      				<li><a href="/shops/add">CREATE Shops</a></li>
+      				<li><a href="/shops/remove">REMOVE Shops</a></li>
+      				<li><a href="/logout/">Logout</a></li>
+    {% else %}
+      <li><a href="/login/">login</a> </li>
+      <li><a href="/register/">register</a></li>
+    {% endif %}
+					
+				</ul>
+		</div><!-- /navbar -->

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drop Grocery Shoppinglist | {% block title %}{% endblock %}</title>
+  
+   <link rel="stylesheet" href="/site_media/remove.css" />
+  <link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+<link rel="stylesheet" href="/site_media/jqm-datebox.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/site_media/semidisableAjax.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+<script src="/site_media/jqm-datebox.core.min.js"></script>
+<script src="/site_media/jqm-datebox.mode.calbox.min.js"></script>
+</head>
+
+<body>
+<!-- Home -->
+	<div data-role="page" id="page">
+		<div data-theme="a" data-role="header" ata-position="inline">
+		{%block lefthead%}{%endblock%}
+			<h3>
+				{% block head %}{% endblock %}
+			</h3>
+		{%block righthead%}{%endblock%}
+{% block navbar %}
+{% include "navbar_base.html" %}
+{% endblock %}
+</div><!-- end header -->
+ <div data-role="content" data-inline="true">
+  {% block content %}{% endblock %}
+  </div>
+</body>
+{% block script %}{% endblock %}
+</html>

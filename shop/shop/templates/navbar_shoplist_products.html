@@ -1,0 +1,16 @@
+
+		<div data-role="navbar">
+				<ul>
+				{% if user.is_authenticated %}
+					<li><a href="/">Home</a></li>
+					<li><a href="/user/{{ user.username }}/shoppinglist/{{shoppinglist.id}}/insert/">ADD product</a></li>
+					<li><a href="/user/{{ user.username }}/shoppinglist/{{shoppinglist.id}}/remove/">REMOVE product(s)</a></li>
+      				<li><a href="/user/{{ user.username }}/">Shopping List {{ user.username }}</a></li>
+      				<li><a href="/logout/">Logout</a></li>
+    {% else %}
+      <li><a href="/login/">login</a> </li>
+      <li><a href="/register/">register</a></li>
+    {% endif %}
+					
+				</ul>
+		</div><!-- /navbar -->

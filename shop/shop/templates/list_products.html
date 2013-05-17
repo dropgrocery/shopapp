@@ -1,0 +1,59 @@
+{% if products %}
+{% load dictionary_extras %}
+{% if remove %}
+    		<form method="post" action="">{% csrf_token %}
+    		<fieldset data-role="controlgroup">
+    		<legend>Select product(s) to remove:</legend>
+    {%else%}
+	<ul data-role="listview" {% if remove %} data-theme="d" {%endif%}>
+	
+	{%endif%}
+		{% for product in products %}
+		
+		{% if remove %}
+		<input name="{{product.id}}" id="{{product.id}}" type="checkbox">
+        <label for="{{product.id}}">{{ product.name}}</label>
+		{% else %}
+
+			<li><a href="#popup{{product.id}}" data-rel="popup" data-position-to="window" data-transition="popup">{{ product.name}}
+			{% if product.name in currentshoplist %}
+				<span class="ui-li-count">{{currentshoplist|access:product.name}}</span>
+			{% endif %}
+			</a></li>
+			    <div data-role="popup" id="popupMenu" data-theme="a">
+    
+    <div data-role="popup" id="popup{{product.id}}" data-theme="a" class="ui-corner-all">
+    <a href="./" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <form method="post" action="">{% csrf_token %}
+            <div style="padding:10px 20px;">
+              
+              <label for="amount" class="select">Amount</label>
+			<select name="amount" id="amount" data-mini="true">
+			<option value="0">0</option>
+    		<option selected="selected" value="1">1</option>
+    		<option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    		
+</select>
+			<input type="hidden" name="product_name" value="{{product.name}}">
+              <button type="submit" data-theme="b" data-icon="check">Amend</button>
+            </div>
+        </form>
+    </div>
+	</div>
+    {% endif %}
+	
+		{% endfor %}
+		
+    {%if remove %}
+    <input type="submit" value="Remove Product(s)" data-theme="b"/>
+    </fieldset>
+    </form>
+    {%else%}
+	</ul>
+	{%endif%}
+{% else %}
+	<p>No products found.</p>
+{% endif %}

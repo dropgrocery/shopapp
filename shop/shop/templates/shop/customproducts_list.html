@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}DropGrocery | Shops{% endblock %}
+{% block head %}My Personal Products {% endblock %}
+{% block navbar %}{% include "navbar_customproducts.html" %}{%endblock%}
+{% block righthead %}<a href="settings" data-icon="gear" class="ui-btn-right">Settings</a> {%endblock%}
+{% block content %}
+
+{% if customproducts %}
+
+  
+    {% if remove %}
+    		<form method="post" action="">{% csrf_token %}
+    		<fieldset data-role="controlgroup">
+    		<legend>Products to remove:</legend>
+    {%else%}
+	<ul data-role="listview" {% if remove %} data-theme="d" {%endif%}>
+	{%endif%}
+    
+        {% for customproduct in customproducts %}
+        
+        {% if remove %}
+    		
+    
+        
+        <input name="{{customproduct.id}}" id="custprod{{customproduct.id}}" type="checkbox">
+        <label for="custprod{{customproduct.id}}">{{ customproduct.name}}</label>
+        
+    
+    
+    	{% else %}
+        <li><a href="">{{ customproduct.name }} </a></li>
+        {% endif %}
+        {% endfor %}
+    
+    {%if remove %}
+    <input type="submit" value="Remove Custom Product(s)" data-theme="b"/>
+    </fieldset>
+    </form>
+    {%else%}
+     </ul>
+    {%endif%}
+{% else %}
+<p>No Custom products found.</p>
+{% endif %}
+{% endblock %}
