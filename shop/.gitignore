@@ -13,5 +13,6 @@ parts
 media/uploads
 tmp
 .DS_Store
-*.db
-*.xls
+/shopping.db
+/simple.xls
+/taxonomy.en-US.xls
