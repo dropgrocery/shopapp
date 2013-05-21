@@ -23,7 +23,7 @@ DATABASES = {
         'NAME': 'ijdb',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
-        'PASSWORD': 'acf42acf',
+        'PASSWORD': '',
         'HOST': '192.168.1.31',
         'PORT':'',
     }
