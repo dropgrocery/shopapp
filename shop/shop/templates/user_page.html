@@ -2,6 +2,11 @@
 {% block title %}{{ username }}{% endblock %}
 {% block head %}Shopping lists for {{ username }}{% endblock %}
 {% block navbar %}{% include "navbar_base.html" %}{%endblock%}
+{%block lefthead %}{%if user.username %}<a href="/logout/">Logout</a>
+
+{%else%} <div><a href="/login/" data-role="button" class="ui-btn-left">Login</a><a href="/register/" data-role="button" class="ui-btn-right">Register</a></div>
+
+{%endif%}{%endblock%}
 {% block content %}
 	{% include "shoppinglists.html" %} 
 {% endblock %}

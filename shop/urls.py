@@ -51,6 +51,9 @@ url(r'^user/(\w+)/customproducts/add/$', create_custom_product),
 (r'^user/(\w+)/shoppinglist/(\d+)/insert/([\w\|\s]+)/$', select_categories1_page),
 (r'^user/(\w+)/shoppinglist/(\d+)/insert/(\w+)/(\w+)/$', select_categories1_page),
 
+#My Products
+(r'^user/(\w+)/shoppinglist/(\d+)/insert_myproduct/$', insert_myproduct),
+
 (r'^shops/remove/$', shops_remove_page, {'action': 'remove'}),
 (r'^shops/$', ShopList.as_view()),
 url(r'^shops/add/$', ShopCreate.as_view(), name='shop_add'),

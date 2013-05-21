@@ -417,5 +417,17 @@ def account_page(request):
                 })
     return render_to_response('account.html',variables)
 
-
-
+@login_required
+def insert_myproduct(request,username, shopid):
+    user = get_object_or_404(User, username=username)
+    remove = False
+    try:
+        customproducts =CustomProduct.objects.filter(user=user)
+    except CustomProduct.DoesNotExist:
+        customproducts = []
+    variables = RequestContext(request, {
+                'shopid':shopid,
+                'remove': remove,
+                'customproducts': customproducts,
+                })
+    return render_to_response('shop/customproducts_list.html', variables)
