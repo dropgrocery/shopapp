@@ -30,7 +30,6 @@
     	{% else %}
         <li><a href="#popup{{customproduct.id}}" data-rel="popup" data-position-to="window" data-transition="popup">{{ customproduct.name }} </a></li>
         
-        <div data-role="popup" id="popupMenu" data-theme="a">
     
     <div data-role="popup" id="popup{{customproduct.id}}" data-theme="a" class="ui-corner-all">
     <a href="./" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
@@ -53,7 +52,6 @@
             </div>
         </form>
     </div>
-	</div>
         {% endif %}
         {% endfor %}
     
