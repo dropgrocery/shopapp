@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_enable_ajax.html" %}
 {% block title %}DropGrocery | Shops{% endblock %}
 {% block head %}My Personal Products {% endblock %}
 {% block navbar %}{% include "navbar_customproducts.html" %}{%endblock%}
@@ -28,7 +28,30 @@
     
     
     	{% else %}
-        <li><a href="">{{ customproduct.name }} </a></li>
+        <li><a href="#popup{{customproduct.id}}" data-rel="popup" data-position-to="window" data-transition="popup">{{ customproduct.name }} </a></li>
+        
+    
+    <div data-role="popup" id="popup{{customproduct.id}}" data-theme="a" class="ui-corner-all">
+    <a href="./" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <form method="post" action="">{% csrf_token %}
+            <div style="padding:10px 20px;">
+              
+              <label for="amount" class="select">Amount</label>
+			<select name="amount" id="amount" data-mini="true">
+			<option value="0">0</option>
+    		<option selected="selected" value="1">1</option>
+    		<option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    		
+</select>
+			
+			<input type="hidden" name="product_name" value="{{customproduct.name}}">
+              <button type="submit" data-theme="b" data-icon="check">Add</button>
+            </div>
+        </form>
+    </div>
         {% endif %}
         {% endfor %}
     

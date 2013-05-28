@@ -228,10 +228,11 @@ def select_categories1_page(request, username, shoppinglistid, cat0):
         form = AmountForm(request.POST)
         
         if form.is_valid():
-            
+            import pdb; pdb.set_trace()
             taxo = Taxonomy.objects.get(id=form.cleaned_data['taxonomy'])
             product, created = Product.objects.get_or_create(name=form.cleaned_data['product_name'],
                         taxonomy=taxo)
+            
             product.save()
             shoplist = ShoppingList.objects.get(id=shoppinglistid)
             product, created = Shoplist_Product.objects.get_or_create(shoplist=shoplist, product=product)
@@ -419,6 +420,31 @@ def account_page(request):
 
 @login_required
 def insert_myproduct(request,username, shopid):
+    import pdb; pdb.set_trace()
+    if request.method == 'POST':
+    
+        form = AmountForm(initial={'taxonomy': -1}, data=request.POST)
+        
+        if form.is_valid():
+            #user = get_object_or_404(User, username=username)
+            product = Product.objects.get(name=form.cleaned_data['product_name'])
+            shoplist = ShoppingList.objects.get(id=shopid)
+            product, created = Shoplist_Product.objects.get_or_create(shoplist=shoplist, product=product)
+            # import pdb; pdb.set_trace()
+            if str(form.cleaned_data['amount']) == '0':
+                if created:
+                    # product is created, but 0 is selected which is not an option
+                    pass
+                else:
+                    # remove relationship as amount is set to 0
+                    product.delete()
+            else:
+                # add relationship and amount
+                product.amount = form.cleaned_data['amount']
+                product.save()
+            return HttpResponseRedirect(
+            '/user/%s/shoppinglist/%s/' % (request.user.username, shopid)
+            )
     user = get_object_or_404(User, username=username)
     remove = False
     try:
