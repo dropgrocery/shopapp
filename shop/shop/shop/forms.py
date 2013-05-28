@@ -53,7 +53,7 @@ class ProductSelectForm(forms.Form):
     
 class AmountForm(forms.Form):
     product_name = forms.CharField()
-    taxonomy = forms.IntegerField()
+    taxonomy = forms.IntegerField(required=False)
     amount = forms.ChoiceField(choices = ((0,'0'),(1,'1',),(2,'2'),(3,'3'),(4,'4'),(5,'5')))
 
 class RemoveProductForm(forms.Form):
