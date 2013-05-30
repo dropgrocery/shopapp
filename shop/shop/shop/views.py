@@ -183,6 +183,7 @@ def product_remove_page(request, username, shoppinglistid):
         for field in formfields:
             s = products.get(id=field)
             s.delete()
+        remove=False
     variables = RequestContext(request, {
                 'remove': remove,
                 'products': products,
